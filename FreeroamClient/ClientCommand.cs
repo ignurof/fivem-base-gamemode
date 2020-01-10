@@ -329,6 +329,8 @@ namespace FreeroamClient
                 // this can be found in ServerCommand.cs
                 TriggerServerEvent("logCmdEvent", text, "/speed");
             }), false);
+
+            // added comment for github experiment
         }
     }
 }
