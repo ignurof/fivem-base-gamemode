@@ -1,0 +1,15 @@
+**/.vs
+
+**/Freeroam.sln
+
+**/FreeroamClient/bin
+**/FreeroamClient/obj
+**/FreeroamClient/Properties
+**/FreeroamClient/CitizenFX.Core.dll
+**/FreeroamClient/FreeroamClient.csproj
+
+**/FreeroamServer/bin
+**/FreeroamServer/obj
+**/FreeroamServer/Properties
+**/FreeroamServer/CitizenFX.Core.dll
+**/FreeroamServer/FreeroamServer.csproj
