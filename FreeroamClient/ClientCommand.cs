@@ -50,9 +50,6 @@ namespace FreeroamClient
             // If we don't do this check, the rest of the method will run every time any resource has started.
             if (GetCurrentResourceName() != resourceName) return;
 
-            // load interiors missing from the world. TODO: add more interiors
-            RequestIpl("trevorstrailer");
-
             // Debugging only
             RegisterCommand("ui", new Action<int, List<object>, string>((source, args, raw) =>
             {
@@ -193,7 +190,7 @@ namespace FreeroamClient
                 }
                 else // If we don't have any args, use this
                 {
-                    await Game.Player.ChangeModel(PedHash.Ballasog);
+                    await Game.Player.ChangeModel(PedHash.ArmBoss01GMM);
                 }
                 TriggerServerEvent("logCmdEvent", "changed model", "/skin");
             }), false);
@@ -331,6 +328,10 @@ namespace FreeroamClient
             }), false);
 
             // added comment for github experiment
+            RegisterCommand("color", new Action<int, List<object>, string>((source, args, raw) =>
+            {
+                SetVehicleColours(Game.PlayerPed.CurrentVehicle.Handle, 150, 30);
+            }), false);
         }
     }
 }
