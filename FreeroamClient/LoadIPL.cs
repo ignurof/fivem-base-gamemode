@@ -22,9 +22,12 @@ namespace FreeroamClient
             // If we don't do this check, the rest of the method will run every time any resource has started.
             if (GetCurrentResourceName() != resourceName) return;
 
-            // load interiors missing from the world. TODO: add more interiors
+            // Trevors trailer
             RequestIpl("trevorstrailer");
+            // Union depository
             RequestIpl("finbank");
+            // Lesters factory
+            RequestIpl("id2_14_during1");
         }
     }
 }
