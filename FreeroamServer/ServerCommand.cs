@@ -10,7 +10,7 @@ namespace FreeroamServer
         public ServerCommand()
         {
             EventHandlers["logCmdEvent"] += new Action<Player, string, string>(LogCommand);
-            EventHandlers["onResourceStart"] += new Action<string>(OnResourceStart);
+            EventHandlers["server:ChangeTime"] += new Action<Player, int>(ServerChangeTime);
         }
 
         private void LogCommand([FromSource] Player source, string param1, string cmd)
@@ -21,13 +21,10 @@ namespace FreeroamServer
             Debug.WriteLine(name + ": " + cmd + " | " + param1);
         }
 
-        private void OnResourceStart(string resourceName)
+        private void ServerChangeTime([FromSource] Player ply, int hour)
         {
-            if (GetCurrentResourceName() != resourceName) return;
-
-            //Trigger
-
-            // TODO: add server events that can be called by the client. start with /commands
+            // Setup privilege checks
+            TriggerClientEvent("changeTime", hour);
         }
     }
 }
