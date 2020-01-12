@@ -332,6 +332,36 @@ namespace FreeroamClient
             {
                 SetVehicleColours(Game.PlayerPed.CurrentVehicle.Handle, 150, 30);
             }), false);
+
+
+            // Make time into a serverside command if possible
+            RegisterCommand("time", new Action<int, List<object>, string>((source, args, raw) =>
+            {
+                int hour = 12;
+
+                // 24 crashes the game, make sure we dont type it
+
+                if(args.Count > 0)
+                {
+                    if(Convert.ToInt32(args[0]) >= 24)
+                    {
+                        TriggerEvent("chat:addMessage", new
+                        {
+                            color = new[] { 255, 0, 0},
+                            args = new[] { "Invalid arguments:", "time is 0-23." }
+                        });
+                        return;
+                    }
+                    hour = Convert.ToInt32(args[0]);    // Test 0, 12, 12 ifall det krashar eller inte
+                    NetworkOverrideClockTime(hour, 0, 0);
+                }
+                else
+                {
+                    // Default to noon if there is no args
+                    NetworkOverrideClockTime(hour, 0, 0);
+                }
+            }), false);
+            
         }
     }
 }
